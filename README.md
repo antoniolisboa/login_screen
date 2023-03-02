@@ -1,16 +1,22 @@
-# login_screen
+# Tela de login in flutter 
 
-A new Flutter project.
+![Imagem do projeto]('/login_screen.png')
 
-## Getting Started
+Este projeto mostra a validação de campos TextFormField utlizando o widget Form. Ele básicamente utiliza uma chave global que verifica o estado de cada validador que está presente nos TextFormFields, desta forma a função que faz a validação recebe o valor presente no TextFormField através desse valor e é possivél especificar erros através do retorno de strings, por exemplo se o campo foi prenchido ou não, caso o campo seja prenchido de forma correta apontar o retorno como null.
 
-This project is a starting point for a Flutter application.
+## Screen
 
-A few resources to get you started if this is your first Flutter project:
+# Índice 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [Título e Imagem de capa](#Título-e-Imagem-de-capa)
+* [Badges](#badges)
+* [Índice](#índice)
+* [Descrição do Projeto](#descrição-do-projeto)
+* [Status do Projeto](#status-do-Projeto)
+* [Funcionalidades e Demonstração da Aplicação](#funcionalidades-e-demonstração-da-aplicação)
+* [Acesso ao Projeto](#acesso-ao-projeto)
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
+* [Pessoas Contribuidoras](#pessoas-contribuidoras)
+* [Pessoas Desenvolvedoras do Projeto](#pessoas-desenvolvedoras)
+* [Licença](#licença)
+* [Conclusão](#conclusão)
