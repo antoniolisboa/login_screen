@@ -14,6 +14,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool isThePasswordHidden = true;
 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  final _loginFormKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,105 +54,129 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Login',
-                          style: TextStyle(
+                child: Form(
+                  key: _loginFormKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Login',
+                            style: TextStyle(
+                              color: thirdColor,
+                              fontSize: 36,
+                              fontFamily: 'Lobster',
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _emailController,
+                        validator: (value) {
+                          if (value != null) {
+                            if (value.isEmpty) return 'E-mail not defined.';
+                          }
+
+                          return null;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(
                             color: thirdColor,
-                            fontSize: 36,
                             fontFamily: 'Lobster',
-                            fontWeight: FontWeight.normal,
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: 'E-mail',
-                        labelStyle: TextStyle(
-                          color: thirdColor,
-                          fontFamily: 'Lobster',
-                        ),
-                        prefixIcon: Icon(
-                          Icons.person,
-                          color: thirdColor,
-                        ),
-                        border: const OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: thirdColor),
-                        ),
-                      ),
-                      cursorColor: thirdColor,
-                    ),
-                    const SizedBox(height: 20),
-                    TextFormField(
-                      obscureText: isThePasswordHidden,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          color: thirdColor,
-                          fontFamily: 'Lobster',
-                        ),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          color: thirdColor,
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isThePasswordHidden = !isThePasswordHidden;
-                            });
-                          },
-                          icon: Icon(
-                            isThePasswordHidden
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                          prefixIcon: Icon(
+                            Icons.person,
                             color: thirdColor,
-                            size: 20,
+                          ),
+                          border: const OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: thirdColor),
                           ),
                         ),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: primaryColor,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: thirdColor),
-                        ),
+                        cursorColor: thirdColor,
                       ),
-                      cursorColor: thirdColor,
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: thirdColor,
-                              textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontFamily: 'Lobster',
+                      const SizedBox(height: 20),
+                      TextFormField(
+                        controller: _passwordController,
+                        validator: (value) {
+                          if (value != null) {
+                            if (value.isEmpty) return 'Password not defined.';
+                          }
+
+                          return null;
+                        },
+                        obscureText: isThePasswordHidden,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                            color: thirdColor,
+                            fontFamily: 'Lobster',
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: thirdColor,
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isThePasswordHidden = !isThePasswordHidden;
+                              });
+                            },
+                            icon: Icon(
+                              isThePasswordHidden
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: thirdColor,
+                              size: 20,
+                            ),
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: primaryColor,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: thirdColor),
+                          ),
+                        ),
+                        cursorColor: thirdColor,
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_loginFormKey.currentState!.validate()) {
+                                  print(_emailController.text);
+                                  print(_passwordController.text);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: thirdColor,
+                                textStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontFamily: 'Lobster',
+                                ),
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text('Sign In'),
                               ),
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('Sign In'),
-                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
