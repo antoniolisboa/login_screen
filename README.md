@@ -16,7 +16,7 @@
 </p>
 
 ## Descrição
-Este projeto mostra a validação de campos TextFormField utlizando o widget Form. Ele básicamente utiliza uma chave global que verifica o estado de cada validador que está presente nos TextFormFields, desta forma a função que faz a validação recebe o valor presente no TextFormField através desse valor e é possivél especificar "erros" através do retorno de strings, por exemplo se o campo foi prenchido ou não. Caso o campo seja prenchido de forma correta especifa retorno como null, caso contrário retorna uma string com o aviso de falha.
+Este projeto mostra a validação de campos TextFormField utilizando o widget Form. Basicamente, ele utiliza uma chave global que verifica o estado de cada validador presente nos TextFormFields. Desta forma, a função que realiza a validação recebe o valor presente no TextFormField por meio dessa chave e é possível especificar "erros" retornando strings, como por exemplo se o campo foi preenchido ou não. Caso o campo seja preenchido de forma correta, o retorno é null caso contrário, é retornado uma string com o aviso de falha.
 
 ## Funcionalidade
 
